@@ -102,6 +102,10 @@ export default class extends Vue {
     if (tip === ECloseTab.closeCurrent) {
       this.closeCurentTab(this.currentTab);
     } else if (tip === ECloseTab.closeOther) {
+      if(this.currentTab === '/index'){
+        AppModule.closeAll();
+        return;
+      }
       AppModule.closeOther();
     } else if (tip === ECloseTab.closeAll) {
       if (this.currentTab !== "/index") {

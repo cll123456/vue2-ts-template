@@ -69,23 +69,22 @@ export default class extends Vue {
    * 滚动条容器
    */
   private scrollContainerDom!: Element;
+
+  /**
+   * 滚动条和实际长度的比列
+   */
+  private radio: number = 1;
   /**
    * 获取子元素的宽/高
    */
-  private caculateChildLength(childs: VNode[] | undefined) {
-    if (childs === undefined) {
-      this.childsTotalLength = 0;
-      return;
-    }
+  private caculateChildLength() {
     // 求和之前需要先制空
     this.childsTotalLength = 0;
     // 计算当前元素的子元素的总和高度/宽度
-    for (const child of childs as VNode[]) {
-      this.childsTotalLength +=
-        this.type === EType.horizontal
-          ? (child.elm as Element).clientWidth
-          : (child.elm as Element).clientHeight;
-    }
+    this.childsTotalLength =
+      this.type === EType.horizontal
+        ? document.getElementsByClassName("scroller-container")[0].clientWidth
+        : document.getElementsByClassName("scroller-container")[0].clientHeight;
   }
   /**
    * 获取样式
@@ -109,24 +108,58 @@ export default class extends Vue {
       this.type === EType.horizontal
         ? this.PDom.clientWidth
         : this.PDom.clientHeight;
-        console.log(this.parentLength);
-        
   }
+
+  private handleHorizontal(eventDelta: number) {
+    const scrollContainerLeft = parseFloat(
+      window.getComputedStyle(this.scrollContainerDom).left
+    );
+    const scrollLeft = parseFloat(window.getComputedStyle(this.scrollDom).left);
+    // 边界判断
+    // 内容的left值不能大于0,或者left 值不能无限向左边滚动
+    if (
+      scrollContainerLeft <= 0 ||
+      this.PDom.clientWidth + -scrollContainerLeft <= this.childsTotalLength
+    ) {
+      let moveValue =
+        scrollContainerLeft + eventDelta / 4 > 0
+          ? 0
+          : scrollContainerLeft + eventDelta / 4;
+      moveValue =
+        moveValue >= -(this.childsTotalLength - this.PDom.clientWidth)
+          ? moveValue
+          : -(this.childsTotalLength - this.PDom.clientWidth);
+      this.scrollContainerDom.style.left = moveValue + "px";
+    } 
+    // 滚动条的left值不能小于0，滚动条left + 滚动条本身的宽度不能大于pDom
+    if (
+      scrollLeft >= 0 ||
+      scrollLeft + this.scrollDom.clientWidth <= this.PDom.clientWidth
+    ) {
+      let moveValue =
+        scrollLeft + (-eventDelta / 4) * this.radio < 0
+          ? 0
+          : scrollLeft + (-eventDelta / 4) * this.radio;
+      moveValue =
+        moveValue >= this.PDom.clientWidth - this.scrollDom.clientWidth
+          ? this.PDom.clientWidth - this.scrollDom.clientWidth
+          : moveValue;
+      this.scrollDom.style.left = moveValue + "px";
+    }
+  }
+
   /***
    * 鼠标滚动事件
    */
   private handleScroll(e: WheelEvent) {
+    // 如果父级的宽度大于子集的总和，不需要移动
+    if (this.radio >= 1) return;
     // 获取鼠标滚动的距离，正数向上，负数向下
     const eventDelta = (e as any).wheelDelta || -e.deltaY * 40;
-    this.scrollContainerDom.style.left =
-      parseFloat(window.getComputedStyle(this.scrollContainerDom).left) +
-      eventDelta / 4 +
-      "px";
-    this.scrollDom.style.left =
-      parseFloat(window.getComputedStyle(this.scrollDom).left) +
-      (-eventDelta / 4) +
-      "px";
-    console.log(this.scrollDom);
+    // 水平方向移动
+    if (this.type === EType.horizontal) {
+      this.handleHorizontal(eventDelta);
+    }
   }
 
   /**
@@ -145,7 +178,7 @@ export default class extends Vue {
       ".scroller-container"
     )[0];
     // 计算子元素的长度/宽度
-    this.caculateChildLength(this.$slots.default);
+    this.caculateChildLength();
     // 获取父级元素的宽/高
     this.caculateParentLength();
     // 添加一个dom 监听器
@@ -154,9 +187,11 @@ export default class extends Vue {
       this.observer = new MutationObserver(
         (mutations: MutationRecord[], observer: MutationObserver) => {
           // 计算子元素的长度/宽度
-          this.caculateChildLength(this.$slots.default);
+          this.caculateChildLength();
           // 获取父级元素的宽/高
           this.caculateParentLength();
+          // 赋值比列
+          this.radio = this.parentLength / this.childsTotalLength;
         }
       );
 
