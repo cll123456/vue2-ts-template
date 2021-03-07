@@ -1,0 +1,30 @@
+{
+  "id": "2401957",
+  "name": "vue2-ts",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "vue2使用ts 来进行搭建项目",
+  "glyphs": [
+    {
+      "icon_id": "5700810",
+      "name": "eye",
+      "font_class": "eye1",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "3091945",
+      "name": "全屏",
+      "font_class": "quanping",
+      "unicode": "e768",
+      "unicode_decimal": 59240
+    },
+    {
+      "icon_id": "12323755",
+      "name": "全屏",
+      "font_class": "quanping1",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    }
+  ]
+}
