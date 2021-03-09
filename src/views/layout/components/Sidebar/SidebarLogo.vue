@@ -42,7 +42,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class extends Vue {
   @Prop({ required: true }) private collapse!: boolean
 
-  private title = '综合事务管理平台'
+  private title = 'VUE2-TS-TEMPLATE'
 }
 </script>
 

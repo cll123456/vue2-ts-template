@@ -21,7 +21,7 @@ Vue.use(SvgIcon, {
   defaultWidth: '1em',
   defaultHeight: '1em'
 })
-import '@/icons/components'
+import '@/icons/components/index'
 
 // 引入阿里图标库里面的图标
 import '@/icons/iconfont/iconfont.css';

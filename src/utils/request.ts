@@ -1,27 +1,50 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { Message, MessageBox } from 'element-ui'
-// import { UserModule } from '@/store/modules/user'
-import store from '@/store'
+import { UserModule } from '@/store/modules/user';
 
-const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  timeout: 5000
+const request = axios.create({
+  baseURL: process.env.NODE_ENV === 'development' ? '/api/' : './ncdmz/iamp', // url = base url + request url
+  // timeout: 5000
   // withCredentials: true // send cookies when cross-domain requests
 })
 
-// Request interceptors
-// service.interceptors.request.use(
-//   config => {
-//     // Add X-Access-Token header to every request, you can add other custom headers here
-//     if (UserModule.id_token) {
-//       config.headers['Authorization'] = UserModule.id_token
-//     }
-//     return config
-//   },
-//   error => {
-//     Promise.reject(error)
-//   }
-// )
+
+/**
+ * 请求拦截
+ */
+request.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  if (UserModule.token.length > 0 && UserModule.token) {
+    config.headers['Authorization'] = UserModule.token
+  }
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+
+interface responseConfig {
+  // 响应结果包含status,0 是成功
+  status: number
+}
+/**
+ * 响应拦截
+ */
+// Add a request interceptor
+request.interceptors.response.use(function (response: AxiosResponse<responseConfig>) {
+  // Do something before request is sent
+  if (response.data.status === 0) {
+    return response;
+  }
+  Message.error('后台接口异常，请联系管理员')
+  return Promise.reject(response);
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+
 
 // Response interceptors
 // service.interceptors.response.use(
@@ -54,4 +77,7 @@ const service = axios.create({
 //   }
 // )
 
-export default service
+export default request
+
+
+

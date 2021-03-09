@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-header">
-      <h1>我是头</h1>
+      <img src="@/assets/login/logo.png" alt="登录logo" height="80%" />
     </div>
     <div class="login-body">
       <div class="login-form-container">
@@ -61,7 +61,10 @@
           <!--                滑块验证-->
           <el-form-item class="el-item-style">
             <div class="validate-slide-div">
-              <login-validator ref='loginValidatorRef' :key="loginValidateKey" />
+              <login-validator
+                ref="loginValidatorRef"
+                :key="loginValidateKey"
+              />
             </div>
           </el-form-item>
           <el-form-item class="el-item-style">
@@ -81,16 +84,21 @@
         </el-form>
       </div>
     </div>
-    <div class="login-footer">我是底部</div>
+    <div class="login-footer">
+      <span> ©2020 信息科技部 - 中国人保南昌市分公司</span>
+    </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Ref, Vue } from "vue-property-decorator";
 import LoginValidator from "@/components/LoginValidator/index.vue";
-import { loginForm } from "./types";
+import { ILoginRes, loginForm } from "./types";
 import { FormValidator } from "@/utils/formValidator";
-import { Form } from "node_modules/element-ui/types";
+import { APIGetMenu, ApiLogin } from "@/api/login/index";
+import { AxiosResponse } from "node_modules/axios";
+import { UserModule } from "@/store/modules/user";
+import { Form } from "element-ui/types";
 
 @Component({
   name: "Login",
@@ -101,8 +109,8 @@ import { Form } from "node_modules/element-ui/types";
 export default class extends Vue {
   // 登录表单数据
   private loginFormData: loginForm = {
-    username: "",
-    password: "",
+    username: "16229767",
+    password: "lg786991",
   };
   /**
    * 验证器
@@ -132,20 +140,24 @@ export default class extends Vue {
    * 登录
    */
   private login() {
-    this.loginFormRef.validate((valide: boolean) => {
-      this.loading = true;
+    this.loginFormRef.validate(async (valide: boolean) => {
+      // this.loading = true;
       if (valide && this.loginValidatorRef.isFinish) {
-        this.$message.success("成功！");
+        // 登录获取数据
+        // let resp: AxiosResponse<ILoginRes> = await ApiLogin(this.loginFormData);
+        // // 存入token 和 用户data 的数据
+        // UserModule.setToken(resp.data.token);
+        // UserModule.setUserData(resp.data.data);
+        
+        // // 获取用户菜单
+        // let menuRes = await APIGetMenu({
+        //   phone: resp.data.data.mobile,
+        //   comcode: resp.data.data.comcode,
+        // });
+        // console.log(menuRes);
 
-        setTimeout(() => {
-          this.$message.info("信息！");
-        }, 1200);
-
-        setTimeout(() => {
-          this.$message.error("失败！");
-          this.$router.push("/");
+        this.$router.push("/");
           this.loading = false;
-        }, 1400);
       } else {
         this.$message.warning("请完善表单信息或者拖动滑块验证");
         this.loginValidateKey = Date.now().toString();
@@ -153,6 +165,8 @@ export default class extends Vue {
       }
     });
   }
+
+  private getMenu() {}
 }
 </script>
 
@@ -162,8 +176,22 @@ export default class extends Vue {
   height: 100%;
   width: 100%;
   display: flex;
+  user-select: none;
   flex-direction: column;
+  .login-header {
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    cursor: pointer;
+  }
 
+  .login-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #322b34;
+    font-size: 12px;
+  }
   .login-header,
   .login-footer {
     height: 10%;

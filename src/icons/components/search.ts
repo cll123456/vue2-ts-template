@@ -1,7 +1,5 @@
 /* eslint-disable */
-/* tslint:disable */
-// @ts-ignore
-import icon from 'vue-svgicon'
+var icon = require('vue-svgicon')
 icon.register({
   'search': {
     width: 128,

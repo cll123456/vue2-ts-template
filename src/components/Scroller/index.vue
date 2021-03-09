@@ -7,6 +7,7 @@
       v-if="type === EType.horizontal"
       :style="getStyle"
       class="is-horizontal-container"
+    @mousedown="movedis"
     />
     <div
       :style="getStyle"
@@ -64,11 +65,11 @@ export default class extends Vue {
   /**
    * 滚动条dom
    */
-  private scrollDom!: Element;
+  private scrollDom!: HTMLDivElement;
   /**
    * 滚动条容器
    */
-  private scrollContainerDom!: Element;
+  private scrollContainerDom!: HTMLDivElement;
 
   /**
    * 滚动条和实际长度的比列
@@ -109,8 +110,10 @@ export default class extends Vue {
         ? this.PDom.clientWidth
         : this.PDom.clientHeight;
   }
-
-  private handleHorizontal(eventDelta: number) {
+  /**
+   * 处理水平状态的滚动条
+   */
+  public horizontalScrollTo(eventDelta: number) {
     const scrollContainerLeft = parseFloat(
       window.getComputedStyle(this.scrollContainerDom).left
     );
@@ -130,7 +133,7 @@ export default class extends Vue {
           ? moveValue
           : -(this.childsTotalLength - this.PDom.clientWidth);
       this.scrollContainerDom.style.left = moveValue + "px";
-    } 
+    }
     // 滚动条的left值不能小于0，滚动条left + 滚动条本身的宽度不能大于pDom
     if (
       scrollLeft >= 0 ||
@@ -147,6 +150,10 @@ export default class extends Vue {
       this.scrollDom.style.left = moveValue + "px";
     }
   }
+  private movedis(e:MouseEvent){
+    console.log(e,'----');
+    
+  }
 
   /***
    * 鼠标滚动事件
@@ -158,9 +165,11 @@ export default class extends Vue {
     const eventDelta = (e as any).wheelDelta || -e.deltaY * 40;
     // 水平方向移动
     if (this.type === EType.horizontal) {
-      this.handleHorizontal(eventDelta);
+      this.horizontalScrollTo(eventDelta);
     }
   }
+
+
 
   /**
    * 元素挂载的时候就需要先计算宽度/高度
@@ -171,12 +180,12 @@ export default class extends Vue {
     // 滚动条dom
     this.scrollDom =
       this.type === EType.horizontal
-        ? this.$el.querySelectorAll(".is-horizontal-container")[0]
-        : this.$el.querySelectorAll(".is-vertical-container")[0];
+        ? this.$el.querySelectorAll(".is-horizontal-container")[0] as HTMLDivElement
+        : this.$el.querySelectorAll(".is-vertical-container")[0]  as HTMLDivElement;
     // 滚动条容器的dom
     this.scrollContainerDom = this.$el.querySelectorAll(
       ".scroller-container"
-    )[0];
+    )[0]  as HTMLDivElement;
     // 计算子元素的长度/宽度
     this.caculateChildLength();
     // 获取父级元素的宽/高

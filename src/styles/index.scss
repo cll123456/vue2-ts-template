@@ -55,6 +55,13 @@ label {
   z-index: 0;
 }
 
+.btn-container {
+  width: 100%;
+  display: flex;
+  padding: 20px 0 0px 0;
+  justify-content: flex-end;
+}
+
 .components-container {
   margin: 30px 50px;
   position: relative;

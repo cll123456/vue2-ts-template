@@ -10,17 +10,17 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
+    },
+    proxy: {
+        '/api': {
+            target: `http://192.168.0.110:9989/ncdmz/iamptest`,
+            changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+            // ws: true,// proxy websockets
+            pathRewrite: { // pathRewrite方法重写url
+               '^/api': ''
+            }
+        }
     }
-    // proxy: {
-    //     [process.env.VUE_APP_BASE_API]: {
-    //         target: `http://localhost:${mockServerPort}/mock-api/v1`,
-    //         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-    //         // ws: true,// proxy websockets
-    //         pathRewrite: { // pathRewrite方法重写url
-    //             ['^' + process.env.VUE_APP_BASE_API]: ''
-    //         }
-    //     }
-    // }
   },
   lintOnSave: false,
   publicPath:"./",

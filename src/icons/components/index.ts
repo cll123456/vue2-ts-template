@@ -1,51 +1,53 @@
 /* tslint:disable */
-import './404'
-import './back-top'
-import './bug'
-import './chart'
-import './clipboard'
-import './component'
-import './dashboard'
-import './documentation'
-import './drag'
-import './edit'
-import './education'
-import './email'
-import './example'
-import './excel'
-import './exit-fullscreen'
-import './eye-off'
-import './eye-on'
-import './form'
-import './fullscreen'
-import './guide-2'
-import './guide'
-import './hamburger'
-import './icon'
-import './international'
-import './language'
-import './like'
-import './link'
-import './list'
-import './lock'
-import './message'
-import './money'
-import './nested'
-import './password'
-import './pdf'
-import './people'
-import './peoples'
-import './qq'
-import './search'
-import './shopping'
-import './size'
-import './skill'
-import './star'
-import './tab'
-import './table'
-import './theme'
-import './tree-table'
-import './tree'
-import './user'
-import './wechat'
-import './zip'
+require('./404')
+require('./back-top')
+require('./bug')
+require('./chart')
+require('./clipboard')
+require('./component')
+require('./dashboard')
+require('./didTask')
+require('./documentation')
+require('./drag')
+require('./edit')
+require('./education')
+require('./email')
+require('./example')
+require('./excel')
+require('./exit-fullscreen')
+require('./eye-off')
+require('./eye-on')
+require('./form')
+require('./fullscreen')
+require('./guide-2')
+require('./guide')
+require('./hamburger')
+require('./icon')
+require('./international')
+require('./language')
+require('./like')
+require('./link')
+require('./list')
+require('./lock')
+require('./message')
+require('./money')
+require('./nested')
+require('./password')
+require('./pdf')
+require('./people')
+require('./peoples')
+require('./qq')
+require('./search')
+require('./shopping')
+require('./size')
+require('./skill')
+require('./star')
+require('./tab')
+require('./table')
+require('./theme')
+require('./tree-table')
+require('./tree')
+require('./user')
+require('./wechat')
+require('./willDoTask')
+require('./zip')
