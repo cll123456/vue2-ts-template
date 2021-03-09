@@ -137,9 +137,9 @@ const router = new VueRouter({
   routes
 })
 // 路由守卫
-router.beforeEach((to: Route, from: Route, next: NavigationGuardNext<Vue>) => {
-  matchRouteMenu(to, from, next);
-})
+// router.beforeEach((to: Route, from: Route, next: NavigationGuardNext<Vue>) => {
+//   matchRouteMenu(to, from, next);
+// })
 
 export default router
 
