@@ -12,7 +12,7 @@ export const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Layout',
     component: Layout,
-    redirect: '/Login',
+    redirect: '/index',
     children: [
       {
         path: 'index',
@@ -122,11 +122,12 @@ export const routes: Array<RouteConfig> = [
 
 
   {
-    path: '*',
+    path: '/*',
     component: () => import(/* webpackChunkName: "404" */ '@/views/pages/error-page/404.vue'),
     meta: { hidden: true }
   },
 ]
+
 
 const router = new VueRouter({
   mode: 'history',
