@@ -121,11 +121,11 @@ export const routes: Array<RouteConfig> = [
   },
 
 
-  {
-    path: '*',
-    component: () => import(/* webpackChunkName: "404" */ '@/views/pages/error-page/404.vue'),
-    meta: { hidden: true }
-  },
+  // {
+  //   path: '*',
+  //   component: () => import(/* webpackChunkName: "404" */ '@/views/pages/error-page/404.vue'),
+  //   meta: { hidden: true }
+  // },
 ]
 
 
