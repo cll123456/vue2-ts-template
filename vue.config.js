@@ -23,7 +23,8 @@ module.exports = {
     }
   },
   lintOnSave: false,
-  publicPath:"./",
+  // publicPath:"./",
+  publicPath:process.env.NODE_ENV === "production" ? "/vue2-ts-template/" : "/",
   outputDir:"docs",
  
   chainWebpack(config) {
