@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   lintOnSave: false,
-  publicPath:"./vue2-ts-template",
+  publicPath:"./",
   outputDir:"docs",
  
   chainWebpack(config) {
