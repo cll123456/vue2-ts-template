@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   lintOnSave: false,
-  publicPath:"./",
+  publicPath:"/",
  
   chainWebpack(config) {
     // provide the app's title in webpack's name field, so that
