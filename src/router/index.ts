@@ -12,7 +12,7 @@ export const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Layout',
     component: Layout,
-    redirect: '/index',
+    redirect: '/Login',
     children: [
       {
         path: 'index',
@@ -121,25 +121,21 @@ export const routes: Array<RouteConfig> = [
   },
 
 
-  // {
-  //   path: '*',
-  //   component: () => import(/* webpackChunkName: "404" */ '@/views/pages/error-page/404.vue'),
-  //   meta: { hidden: true }
-  // },
+  {
+    path: '*',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/pages/error-page/404.vue'),
+    meta: { hidden: true }
+  },
 ]
-
-
-
-
 
 const router = new VueRouter({
   mode: 'history',
   routes
 })
 // 路由守卫
-// router.beforeEach((to: Route, from: Route, next: NavigationGuardNext<Vue>) => {
-//   matchRouteMenu(to, from, next);
-// })
+router.beforeEach((to: Route, from: Route, next: NavigationGuardNext<Vue>) => {
+  matchRouteMenu(to, from, next);
+})
 
 export default router
 
