@@ -7,14 +7,7 @@ import Layout from '@/views/layout/index.vue'
 Vue.use(VueRouter)
 
 export const routes: Array<RouteConfig> = [
-  {
-    path: '/Login',
-    name: 'Login',
-    component: () => import(/* webpackChunkName: "Login" */ '@/views/pages/login/index.vue'),
-    meta: {
-      hidden: true
-    }
-  },
+
   {
     path: '/',
     name: 'Layout',
@@ -31,6 +24,14 @@ export const routes: Array<RouteConfig> = [
         }
       }
     ]
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "Login" */ '@/views/pages/login/index.vue'),
+    meta: {
+      hidden: true
+    }
   },
   {
     path: '/TaskList',
@@ -120,40 +121,8 @@ export const routes: Array<RouteConfig> = [
   },
 
 
-  // {
-  //   path: '/table',
-  //   component: Layout,
-  //   meta: {
-  //     title: '表格组',
-  //     icon: 'example'
-  //   },
-  //   redirect: '/Table1',
-  //   children: [
-  //     {
-  //       path: '/Table1',
-  //       component: () => import(/* webpackChunkName: "Table1" */ '@/views/pages/padBranch/index.vue'),
-  //       name: 'padBranch',
-  //       meta: {
-  //         title: '表格1',
-  //         icon: 'user',
-  //         noCache: true
-  //       }
-  //     },
-  //     {
-  //       path: '/Table2',
-  //       name: 'Table2',
-  //       component: () => import(/* webpackChunkName: "Table2" */ '@/views/pages/table2/index.vue'),
-  //       meta: {
-  //         title: '表格2',
-  //         icon: 'user',
-  //         noCache: false
-  //       }
-  //     },
-  //   ]
-  // },
-
   {
-    path: '/*',
+    path: '*',
     component: () => import(/* webpackChunkName: "404" */ '@/views/pages/error-page/404.vue'),
     meta: { hidden: true }
   },
