@@ -36,7 +36,7 @@ class User extends VuexModule implements IUserState {
    * @param userData 
    */
   @Mutation
-  private SET_USER_DATA(userData: any) {
+  public SET_USER_DATA(userData: any) {
     // 存入数据
     this.useData = userData;
     // 存入数据进入cookie
@@ -47,13 +47,13 @@ class User extends VuexModule implements IUserState {
    * @param token 
    */
   @Mutation
-  private SET_TOKEN(token: string) {
+  public SET_TOKEN(token: string) {
     this.token = token;
     setToken(token);
   }
 
   @Mutation
-  private SET_MENU(routeList: RouteConfig[]) {
+  public SET_MENU(routeList: RouteConfig[]) {
     this.routeList = routeList
   }
   /**

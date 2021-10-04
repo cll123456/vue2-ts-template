@@ -108,11 +108,11 @@ export const routes: Array<RouteConfig> = [
 
     children: [
       {
-        path: '/PadBranch',
-        name: 'PadBranch',
-        component: () => import(/* webpackChunkName: "PadBranch" */ '@/views/pages/padBranch/index.vue'),
+        path: '/Hobby',
+        name: 'Hobby',
+        component: () => import(/* webpackChunkName: "Hobby" */ '@/views/pages/hobby/index.vue'),
         meta: {
-          title: '退垫支流程',
+          title: '兴趣',
           icon: 'money',
           noCache: false
         }

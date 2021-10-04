@@ -29,56 +29,56 @@ export default class extends Vue {
   /**
    * 水平还是垂直
    */
-  @Prop({ default: EType.horizontal }) private type!: EType;
+  @Prop({ default: EType.horizontal }) public type!: EType;
   /**
    * 父级的id
    */
-  @Prop({ required: true }) private parentId!: string;
+  @Prop({ required: true }) public parentId!: string;
   /**
    * 滚动条的背景颜色
    */
-  @Prop({ default: "rgb(66, 59, 54)" }) private bgColor!: string;
+  @Prop({ default: "rgb(66, 59, 54)" }) public bgColor!: string;
 
   /**
    * 注册一个观察者
    */
-  private observer!: MutationObserver;
+  public observer!: MutationObserver;
 
   /**
    * 元素总宽度/高度
    */
-  private childsTotalLength: number = 0;
+  public childsTotalLength: number = 0;
 
   /**
    * 父元素的总高度/宽度
    */
-  private parentLength: number = 0;
+  public parentLength: number = 0;
   /**
    * 枚举类型
    */
-  private EType = EType;
+  public EType = EType;
   /**
    * 父元素
    */
 
-  private PDom!: Element;
+  public PDom!: Element;
   /**
    * 滚动条dom
    */
-  private scrollDom!: HTMLDivElement;
+  public scrollDom!: HTMLDivElement;
   /**
    * 滚动条容器
    */
-  private scrollContainerDom!: HTMLDivElement;
+  public scrollContainerDom!: HTMLDivElement;
 
   /**
    * 滚动条和实际长度的比列
    */
-  private radio: number = 1;
+  public radio: number = 1;
   /**
    * 获取子元素的宽/高
    */
-  private caculateChildLength() {
+  public caculateChildLength() {
     // 求和之前需要先制空
     this.childsTotalLength = 0;
     // 计算当前元素的子元素的总和高度/宽度
@@ -104,7 +104,7 @@ export default class extends Vue {
   /**
    * 计算父级的宽/高
    */
-  private caculateParentLength() {
+  public caculateParentLength() {
     this.parentLength =
       this.type === EType.horizontal
         ? this.PDom.clientWidth
@@ -150,7 +150,7 @@ export default class extends Vue {
       this.scrollDom.style.left = moveValue + "px";
     }
   }
-  private movedis(e:MouseEvent){
+  public movedis(e:MouseEvent){
     console.log(e,'----');
     
   }
@@ -158,7 +158,7 @@ export default class extends Vue {
   /***
    * 鼠标滚动事件
    */
-  private handleScroll(e: WheelEvent) {
+  public handleScroll(e: WheelEvent) {
     // 如果父级的宽度大于子集的总和，不需要移动
     if (this.radio >= 1) return;
     // 获取鼠标滚动的距离，正数向上，负数向下

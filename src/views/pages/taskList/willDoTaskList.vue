@@ -65,14 +65,14 @@ import { Component, Vue } from "vue-property-decorator";
   name: "WillDoTaskList",
 })
 export default class extends Vue {
-  private willDoTaskListForm = {
+  public willDoTaskListForm = {
     name: "", // 员工姓名进行查询
     type: "1", // 流程类别
   };
   /**
    * 表格数据
    */
-  private tableData = [
+  public tableData = [
     {
       date: "2016-05-02",
       name: "王小虎",
@@ -110,7 +110,7 @@ export default class extends Vue {
   /**
    * 当前页面
    */
-  private currentPage: number = 1;
+  public currentPage: number = 1;
 
   handleSizeChange(val: number) {
     console.log(`每页 ${val} 条`);

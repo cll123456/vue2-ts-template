@@ -59,16 +59,16 @@ export default class extends Vue {
   /**
    * 文件列表
    */
-  @Prop({ required: true, default: [] }) private fileList!: IFileObj[];
+  @Prop({ required: true, default: [] }) public fileList!: IFileObj[];
   /**
    * 文件个数
    */
-  @Prop({ default: 5 }) private limits: number = 5;
+  @Prop({ default: 5 }) public limits: number = 5;
 
   /**
    * 父级容器的高度
    */
-  @Prop({ default: 200 }) private parentHight!: number;
+  @Prop({ default: 200 }) public parentHight!: number;
   /**
    * 获取父级容器的高度
    */
@@ -81,32 +81,32 @@ export default class extends Vue {
   /**
    * 图片弹框地址
    */
-  private dialogImageUrl: string = "";
+  public dialogImageUrl: string = "";
   /**
    * 图片打开的弹框
    */
-  private dialogVisible: boolean = false;
+  public dialogVisible: boolean = false;
   /**
    * 是否显示按钮
    */
-  private disabled: boolean = false;
+  public disabled: boolean = false;
   /**
    * 查看图片
    */
-  private handlePictureCardPreview(file: IFileObj) {
+  public handlePictureCardPreview(file: IFileObj) {
     this.dialogImageUrl = file.url;
     this.dialogVisible = true;
   }
   /**
    * 下载文件
    */
-  private handleDownload(file: IFileObj) {
+  public handleDownload(file: IFileObj) {
     downLoadByURL(file.url, file.name);
   }
   /**
    * 获取文件列表
    */
-  private handleChange(file: IFileObj, fileList: IFileObj[]) {
+  public handleChange(file: IFileObj, fileList: IFileObj[]) {
     console.log(file);
     
     this.$emit('update:fileList', fileList);
@@ -114,7 +114,7 @@ export default class extends Vue {
   /**
    * 删除文件，
    */
-  private handleRemove(file: IFileObj) {
+  public handleRemove(file: IFileObj) {
     console.log(file, this.fileList);
     
     let list = this.fileList.filter(
@@ -125,7 +125,7 @@ export default class extends Vue {
   /**
    * 文件超过限制
    */
-  private exceedLimitFile() {
+  public exceedLimitFile() {
     this.$message.warning(`上传的文件个数不能超过${this.limits}张!`);
   }
 }

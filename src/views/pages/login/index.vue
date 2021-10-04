@@ -1,7 +1,8 @@
 <template>
   <div class="login-container">
     <div class="login-header">
-      <img src="@/assets/login/logo.png" alt="登录logo" height="80%" />
+      <img src="@/assets/logo.png" alt="登录logo" height="80%" />
+      <h1>VUE2-TS-TEMPLATE</h1>
     </div>
     <div class="login-body">
       <div class="login-form-container">
@@ -12,20 +13,12 @@
           :model="loginFormData"
           status-icon
         >
-          <div class="">
+          <div class>
             <h2>表单登录</h2>
-            <!-- <span><i class="web-font">南昌分公司</i></span
-          ><span><i class="web-font">统一报表平台</i></span> -->
           </div>
           <el-form-item
             prop="username"
-            :rules="
-              FormValidator.checkStringLength(3, 50, '用户名', true, [
-                'blur',
-                'change',
-              ])
-            "
-          >
+            :rules="FormValidator.checkStringLength(3, 50, '用户名', true,'blur')">
             <el-input
               v-model="loginFormData.username"
               placeholder="请输入用户名"
@@ -37,10 +30,7 @@
             class="el-item-style"
             prop="password"
             :rules="
-              FormValidator.checkStringLength(0, 15, '用户名', true, [
-                'blur',
-                'change',
-              ])
+              FormValidator.checkStringLength(0, 15, '用户名', true, 'blur')
             "
           >
             <!-- 密码框 -->
@@ -61,10 +51,7 @@
           <!--                滑块验证-->
           <el-form-item class="el-item-style">
             <div class="validate-slide-div">
-              <login-validator
-                ref="loginValidatorRef"
-                :key="loginValidateKey"
-              />
+              <login-validator ref="loginValidatorRef" :key="loginValidateKey" />
             </div>
           </el-form-item>
           <el-form-item class="el-item-style">
@@ -78,14 +65,13 @@
               "
               type="primary"
               @click="login"
-              >登录
-            </el-button>
+            >登录</el-button>
           </el-form-item>
         </el-form>
       </div>
     </div>
     <div class="login-footer">
-      <span> ©2020 信息科技部 - 中国人保南昌市分公司</span>
+      <span>©2020 开源技术库 - 中国xxxxx</span>
     </div>
   </div>
 </template>
@@ -108,22 +94,22 @@ import { Form } from "element-ui/types";
 })
 export default class extends Vue {
   // 登录表单数据
-  private loginFormData: loginForm = {
-    username: "16229767",
-    password: "lg786991",
+  public loginFormData: loginForm = {
+    username: "123232",
+    password: "21232",
   };
   /**
    * 验证器
    */
-  private FormValidator = FormValidator;
+  public FormValidator = FormValidator;
   /**
    * 密码框是否睁开眼
    */
-  private hasOpenEye = false;
+  public hasOpenEye = false;
   /**
    * 登录按钮是否需要loding
    */
-  private loading = false;
+  public loading = false;
   /**
    * 表单的ref
    */
@@ -135,11 +121,11 @@ export default class extends Vue {
   /**
    * 刷新验证组件的key
    */
-  private loginValidateKey: string = Date.now().toString();
+  public loginValidateKey: string = Date.now().toString();
   /**
    * 登录
    */
-  private login() {
+  public login() {
     this.loginFormRef.validate(async (valide: boolean) => {
       // this.loading = true;
       if (valide && this.loginValidatorRef.isFinish) {
@@ -148,7 +134,7 @@ export default class extends Vue {
         // // 存入token 和 用户data 的数据
         // UserModule.setToken(resp.data.token);
         // UserModule.setUserData(resp.data.data);
-        
+
         // // 获取用户菜单
         // let menuRes = await APIGetMenu({
         //   phone: resp.data.data.mobile,
@@ -157,7 +143,7 @@ export default class extends Vue {
         // console.log(menuRes);
 
         this.$router.push("/");
-          this.loading = false;
+        this.loading = false;
       } else {
         this.$message.warning("请完善表单信息或者拖动滑块验证");
         this.loginValidateKey = Date.now().toString();
@@ -166,7 +152,7 @@ export default class extends Vue {
     });
   }
 
-  private getMenu() {}
+  public getMenu() { }
 }
 </script>
 

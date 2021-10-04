@@ -65,11 +65,11 @@ import { Component, Vue } from 'vue-property-decorator'
   name: 'Page401'
 })
 export default class extends Vue {
-  private errGif = require("@/assets/401-images/401.gif") + '?' + +new Date()
-  private ewizardClap = 'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646'
-  private dialogVisible = false
+  public errGif = require("@/assets/401-images/401.gif") + '?' + +new Date()
+  public ewizardClap = 'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646'
+  public dialogVisible = false
 
-  private back() {
+  public back() {
     if (this.$route.query.noGoBack) {
       this.$router.push({ path: '/dashboard' })
     } else {

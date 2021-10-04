@@ -64,10 +64,10 @@ import SidebarItemLink from "./SidebarItemLink.vue";
   },
 })
 export default class extends Vue {
-  @Prop({ required: true }) private item!: RouteConfig;
-  @Prop({ default: false }) private isCollapse!: boolean;
-  @Prop({ default: true }) private isFirstLevel!: boolean;
-  @Prop({ default: "" }) private basePath!: string;
+  @Prop({ required: true }) public item!: RouteConfig;
+  @Prop({ default: false }) public isCollapse!: boolean;
+  @Prop({ default: true }) public isFirstLevel!: boolean;
+  @Prop({ default: "" }) public basePath!: string;
 
   get alwaysShowRootMenu() {
     if (this.item.meta && this.item.meta.alwaysShow) {
@@ -106,7 +106,7 @@ export default class extends Vue {
     return { ...this.item, path: "" };
   }
 
-  private resolvePath(routePath: string) {
+  public resolvePath(routePath: string) {
     if (isExternal(routePath)) {
       return routePath;
     }

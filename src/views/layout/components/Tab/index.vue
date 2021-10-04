@@ -54,7 +54,7 @@ export default class extends Vue {
   /**
    * 关闭按钮的枚举
    */
-  private ECloseTab = ECloseTab;
+  public ECloseTab = ECloseTab;
   // 获取TabList
   get TabList() {
     return AppModule.TabList;
@@ -98,7 +98,7 @@ export default class extends Vue {
   /**
    * 点击按钮的关闭操作
    */
-  private handleCommand(tip: ECloseTab) {
+  public handleCommand(tip: ECloseTab) {
     if (tip === ECloseTab.closeCurrent) {
       this.closeCurentTab(this.currentTab);
     } else if (tip === ECloseTab.closeOther) {

@@ -27,22 +27,22 @@
           <el-col :span="12">
             <card-header :title="'申请内容'" />
             <el-card shadow="never">
-              <el-form-item label="申请事项" label-width="120px">
+              <el-form-item label="爱好" label-width="120px">
                 <el-radio-group v-model="padBranchForm.applyItem">
-                  <el-radio label="原账号退回"></el-radio>
-                  <el-radio label="垫支申请"></el-radio>
-                  <el-radio label="其他"></el-radio>
+                  <el-radio label="吃饭"></el-radio>
+                  <el-radio label="睡觉"></el-radio>
+                  <el-radio label="打豆豆"></el-radio>
                 </el-radio-group>
               </el-form-item>
               <el-form-item label="险种" label-width="120px">
                 <el-select
                   v-model="padBranchForm.insurance"
-                  placeholder="请选择活动险种"
+                  placeholder="请选择活动"
                   style="width: 100%"
                 >
-                  <el-option label="车险" value="0"></el-option>
-                  <el-option label="团险" value="1"></el-option>
-                  <el-option label="个险" value="2"></el-option>
+                  <el-option label="跳绳" value="0"></el-option>
+                  <el-option label="游泳" value="1"></el-option>
+                  <el-option label="打篮球" value="2"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="支付金额（/元）" label-width="120px">
@@ -89,7 +89,7 @@ import CardHeader from "./../components/CardHeader/index.vue";
 import { IFileObj } from "./../../types/fileTypes";
 import PicList from "./../components/PicList/index.vue";
 @Component({
-  name: "PadBranch",
+  name: "Hobby",
   components: {
     CardHeader,
     PicList,
@@ -99,9 +99,9 @@ export default class extends Vue {
   /**
    * from 表单的数据
    */
-  private padBranchForm = {
+  public padBranchForm = {
     name: "",
-    applyItem: "原账号退回", // 申请事项
+    applyItem: "打豆豆", // 申请事项
     insurance: "", // 险种
     payMoney: 0, // 支付金额
     cardNumber: "", // 支付金额
@@ -115,7 +115,7 @@ export default class extends Vue {
   /**
    * 文件列表
    */
-  private fileList: IFileObj[] = [];
+  public fileList: IFileObj[] = [];
 }
 </script>
 

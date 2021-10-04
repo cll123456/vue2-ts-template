@@ -21,15 +21,15 @@ export default class extends Vue {
   /**
    * 距离屏幕左端距离
    */
-  private beginClientX = 0;
+  public beginClientX = 0;
   /*触发拖动状态  判断*/
-  private mouseMoveState = false;
+  public mouseMoveState = false;
   /*拖动最大宽度，依据滑块宽度算出来的*/
-  private maxWidth = 0;
+  public maxWidth = 0;
   /*滑块文字*/
-  private confirmWords = "向右拖动滑块验证";
+  public confirmWords = "向右拖动滑块验证";
   /*验证成功判断*/
-  private confirmSuccess = false;
+  public confirmSuccess = false;
   /**
    * 外壳div
    */
@@ -48,7 +48,7 @@ export default class extends Vue {
   /**
    * 鼠标点击事件
    */
-  private mouseDownFn(e: MouseEvent) {
+  public mouseDownFn(e: MouseEvent) {
     if (!this.confirmSuccess) {
       e.preventDefault && e.preventDefault(); //阻止文字选中等 浏览器默认事件
       this.mouseMoveState = true;
@@ -59,7 +59,7 @@ export default class extends Vue {
   /**
    * 鼠标移动事件
    */
-  private mouseMoveFn(e: MouseEvent) {
+  public mouseMoveFn(e: MouseEvent) {
     if (this.mouseMoveState) {
       let width = e.clientX - this.beginClientX;
       if (width > 0 && width <= this.maxWidth) {
@@ -79,7 +79,7 @@ export default class extends Vue {
   /**
    * 鼠标抬起的事件
    */
-  private moseUpFn(e: MouseEvent) {
+  public moseUpFn(e: MouseEvent) {
     this.mouseMoveState = false;
     let width = e.clientX - this.beginClientX;
     if (width < this.maxWidth) {
@@ -95,7 +95,7 @@ export default class extends Vue {
   }
 
   //验证成功函数
-  private successFunction() {
+  public successFunction() {
     this.confirmSuccess = true;
     this.confirmWords = "验证通过";
     // 清除绑定的事件

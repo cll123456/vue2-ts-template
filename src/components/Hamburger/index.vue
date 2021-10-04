@@ -19,9 +19,9 @@
         name: 'Hamburger'
     })
     export default class extends Vue {
-        @Prop({ default: false }) private isActive!: boolean
+        @Prop({ default: false }) public isActive!: boolean
 
-        private toggleClick() {
+        public toggleClick() {
             this.$emit('toggleClick')
         }
     }

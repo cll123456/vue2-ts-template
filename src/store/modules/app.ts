@@ -49,7 +49,7 @@ class App extends VuexModule implements IAppState {
 
 
   @Mutation
-  private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
+  public TOGGLE_SIDEBAR(withoutAnimation: boolean) {
     this.sidebar.opened = !this.sidebar.opened
     this.sidebar.withoutAnimation = withoutAnimation
     if (this.sidebar.opened) {
@@ -60,7 +60,7 @@ class App extends VuexModule implements IAppState {
   }
 
   @Mutation
-  private CLOSE_SIDEBAR(withoutAnimation: boolean) {
+  public CLOSE_SIDEBAR(withoutAnimation: boolean) {
     this.sidebar.opened = false
     this.sidebar.withoutAnimation = withoutAnimation
     setSidebarStatus('closed')
@@ -71,7 +71,7 @@ class App extends VuexModule implements IAppState {
    * @param obj 
    */
   @Mutation
-  private SET_TAB(obj: IRouteObj) {
+  public SET_TAB(obj: IRouteObj) {
     const { path } = obj;
     // store 和 cookie 都需要存入数据
     this.currentTab = path;
@@ -87,7 +87,7 @@ class App extends VuexModule implements IAppState {
    * @param path 1
    */
   @Mutation
-  private CLOSE_TAB(path: string) {
+  public CLOSE_TAB(path: string) {
     // 路由列表筛选不匹配的
     this.TabList = this.TabList.filter((it: IRouteObj) => it.path !== path);
   }
@@ -95,7 +95,7 @@ class App extends VuexModule implements IAppState {
  * 关闭其他
  */
   @Mutation
-  private CLOSE_OTHER() {
+  public CLOSE_OTHER() {
     const currentObj: IRouteObj = JSON.parse(getCurrentTab() as string);
     this.TabList = [{
       name: "Index",
@@ -107,7 +107,7 @@ class App extends VuexModule implements IAppState {
  * 关闭全部
  */
   @Mutation
-  private CLOSE_ALL(){
+  public CLOSE_ALL(){
     const obj = {
       name: "Index",
       path: "/index",

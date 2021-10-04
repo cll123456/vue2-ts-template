@@ -40,9 +40,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'SidebarLogo'
 })
 export default class extends Vue {
-  @Prop({ required: true }) private collapse!: boolean
+  @Prop({ required: true }) public collapse!: boolean
 
-  private title = 'VUE2-TS-TEMPLATE'
+  public title = 'VUE2-TS-TEMPLATE'
 }
 </script>
 

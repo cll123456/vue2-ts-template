@@ -50,11 +50,11 @@ export default class extends Vue {
     return require("@/assets/avatar.gif");
   }
 
-  private toggleSideBar() {
+  public toggleSideBar() {
     AppModule.ToggleSideBar(false);
   }
 
-  private async logout() {
+  public async logout() {
     // UserModule.ResetToken()
     console.log("退出了退出了");
     this.$router.push('/Login')

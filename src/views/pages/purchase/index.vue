@@ -40,7 +40,6 @@
               <el-table-column fixed="right" label="操作" width="100">
                 <template slot-scope="scope">
                   <el-button
-                    @click="handleClick(scope.row)"
                     type="text"
                     size="small"
                     >查看</el-button
@@ -75,7 +74,6 @@
               <el-table-column fixed="right" label="操作" width="100">
                 <template slot-scope="scope">
                   <el-button
-                    @click="handleClick(scope.row)"
                     type="text"
                     size="small"
                     >查看</el-button
@@ -107,13 +105,13 @@ export default class extends Vue {
   /**
    * 采购对象
    */
-  private purchaseObj: string = "个人采购";
+  public purchaseObj: string = "个人采购";
   /**
    * 搜索商品
    */
-  private searchGoods: string = "";
+  public searchGoods: string = "";
 
-  private tableData = [
+  public tableData = [
     {
       date: "2016-05-02",
       name: "王小虎",

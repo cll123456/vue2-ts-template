@@ -8,7 +8,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   name: "CardHeader",
 })
 export default class extends Vue {
-  @Prop({ required: true, default: "一级标题" }) private title!: string;
+  @Prop({ required: true, default: "一级标题" }) public title!: string;
 }
 </script>
 

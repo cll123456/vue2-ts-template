@@ -1,7 +1,7 @@
 const path = require('path')
 
 const devServerPort = 10003
-const name = '综合事务管理平台'
+const name = 'VUE2-TS-TEMPLATE'
 const publicPath = './';
 module.exports = {
   devServer: {
@@ -13,7 +13,7 @@ module.exports = {
     },
     proxy: {
         '/api': {
-            target: `http://192.168.0.110:9989/ncdmz/iamptest`,
+            target: `http://www.baidu.com`,
             changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
             // ws: true,// proxy websockets
             pathRewrite: { // pathRewrite方法重写url
